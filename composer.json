@@ -1,0 +1,14 @@
+{
+    "name": "sherif/press",
+    "description": "An Elegant markdown-powered blog for the laravel framework.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sherif",
+            "email": "sherifnabil@github.com"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^6.24"
+    }
+}
