@@ -10,5 +10,18 @@
     ],
     "require-dev": {
         "orchestra/testbench": "^6.24"
+    },
+    "autoload": {
+        "psr-4": {
+            "SherifNabil\\Press\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SherifNabil\\Press\\tests\\": "Tests/"
+        }
+    },
+    "require": {
+        "erusev/parsedown": "^1.7"
     }
 }
