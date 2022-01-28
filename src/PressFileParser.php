@@ -16,12 +16,12 @@ class PressFileParser
         $this->explodeData();
     }
 
-    public function getData()
+    public function getData(): array
     {
         return $this->data;
     }
 
-    protected function splitFile()
+    protected function splitFile(): void
     {
         preg_match(
             pattern: '/^\-{3}(.*?)\-{3}(.*)/s',
@@ -30,7 +30,7 @@ class PressFileParser
         );
     }
 
-    protected function explodeData()
+    protected function explodeData(): void
     {
         foreach (explode("\n", trim($this->data[1])) as $fieldString) {
             preg_match('/(.*):\s?(.*)/', $fieldString, $fieldArray);

@@ -8,7 +8,7 @@ use SherifNabil\Press\PressFileParser;
 class PressFileParserTest extends TestCase
 {
     /** @test */
-    public function the_head_and_body_gets_split()
+    public function the_head_and_body_gets_split(): void
     {
         $pressFileParser = (new PressFileParser(__DIR__ . '/../blogs/MarkFile1.md'));
 
@@ -20,7 +20,7 @@ class PressFileParserTest extends TestCase
     }
 
     /** @test */
-    public function each_head_field_gets_seperated()
+    public function each_head_field_gets_seperated(): void
     {
         $pressFileParser = (new PressFileParser(__DIR__ . '/../blogs/MarkFile1.md'));
 
