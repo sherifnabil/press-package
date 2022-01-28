@@ -2,6 +2,8 @@
 
 namespace SherifNabil\Press;
 
+use Carbon\Carbon;
+use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\File;
 
 class PressFileParser
@@ -14,6 +16,7 @@ class PressFileParser
         $this->filename = $filename;
         $this->splitFile();
         $this->explodeData();
+        $this->processFields();
     }
 
     public function getData(): array
@@ -25,9 +28,20 @@ class PressFileParser
     {
         preg_match(
             pattern: '/^\-{3}(.*?)\-{3}(.*)/s',
-            subject: File::get($this->filename),
+            subject: File::exists($this->filename) ? File::get($this->filename) : $this->filename,
             matches: $this->data
         );
+    }
+
+    protected function processFields(): void
+    {
+        foreach ($this->data as $field => $value) {
+            if ($field === 'date') {
+                $this->data[$field] = Carbon::parse($value);
+            } elseif ($field ==='body') {
+                $this->data[$field] = Markdown::parse($value);
+            }
+        }
     }
 
     protected function explodeData(): void

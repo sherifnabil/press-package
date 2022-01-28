@@ -2,6 +2,7 @@
 
 namespace SherifNabil\Press\Tests\Feature;
 
+use Carbon\Carbon;
 use Orchestra\Testbench\TestCase;
 use SherifNabil\Press\PressFileParser;
 
@@ -16,6 +17,17 @@ class PressFileParserTest extends TestCase
 
         $this->assertStringContainsString('title: My Title', $data[1]);
         $this->assertStringContainsString('description: Description here', $data[1]);
+        $this->assertStringContainsString('Blog post body', $data[2]);
+    }
+
+    /** @test */
+    public function a_string_can_also_be_used_instead(): void
+    {
+        $pressFileParser = (new PressFileParser("---\ntitle: My Title\n---\nBlog post body here"));
+
+        $data = $pressFileParser->getData();
+
+        $this->assertStringContainsString('title: My Title', $data[1]);
         $this->assertStringContainsString('Blog post body', $data[2]);
     }
 
@@ -37,6 +49,17 @@ class PressFileParserTest extends TestCase
 
         $data = $pressFileParser->getData();
 
-        $this->assertEquals("# Heading\n\nBlog post body", $data['body']);
+        $this->assertEquals("<h1>Heading</h1>\n<p>Blog post body</p>\n", $data['body']);
+    }
+
+    /** @test */
+    public function a_date_field_can_be_parsed(): void
+    {
+        $pressFileParser = (new PressFileParser("---date: May 14, 1988\n---"));
+
+        $data = $pressFileParser->getData();
+
+        $this->assertInstanceOf(Carbon::class, $data['date']);
+        $this->assertEquals('05/14/1988', $data['date']->format('m/d/Y'));
     }
 }
