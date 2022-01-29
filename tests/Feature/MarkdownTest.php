@@ -1,10 +1,8 @@
 <?php
 
-namespace SherifNabil\Press\Tests\Feature;
+namespace Sherif\Press\Tests\Feature;
 
-use Parsedown;
-use Orchestra\Testbench\TestCase;
-use SherifNabil\Press\MarkdownParser;
+use Sherif\Press\MarkdownParser;
 
 class MarkdownTest extends TestCase
 {

@@ -1,10 +1,9 @@
 <?php
 
-namespace SherifNabil\Press\Tests\Feature;
+namespace Sherif\Press\Tests\Feature;
 
 use Carbon\Carbon;
-use Orchestra\Testbench\TestCase;
-use SherifNabil\Press\PressFileParser;
+use Sherif\Press\PressFileParser;
 
 class PressFileParserTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace SherifNabil\Press\Fields;
+namespace Sherif\Press\Fields;
 
 class Title extends FieldContract
 {

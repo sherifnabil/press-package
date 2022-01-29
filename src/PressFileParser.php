@@ -1,6 +1,6 @@
 <?php
 
-namespace SherifNabil\Press;
+namespace Sherif\Press;
 
 use Carbon\Carbon;
 use Illuminate\Mail\Markdown;
@@ -42,9 +42,9 @@ class PressFileParser
     protected function processFields(): void
     {
         foreach ($this->data as $field => $value) {
-            $class = 'SherifNabil\\Press\\Fields\\' . ucfirst($field);
+            $class = 'Sherif\\Press\\Fields\\' . ucfirst($field);
             if (!class_exists($class) && !method_exists($class, 'process')) {
-                $class = 'SherifNabil\\Press\\Fields\\Extra';
+                $class = 'Sherif\\Press\\Fields\\Extra';
             }
             $this->data = array_merge($this->data, $class::process($field, $value, $this->data));
         }

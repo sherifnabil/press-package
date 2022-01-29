@@ -1,6 +1,6 @@
 <?php
 
-namespace SherifNabil\Press;
+namespace Sherif\Press;
 
 use Parsedown;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace SherifNabil\Press\Fields;
+namespace Sherif\Press\Fields;
 
-use SherifNabil\Press\Fields\FieldContract;
+use Sherif\Press\Fields\FieldContract;
 
 class Extra extends FieldContract
 {

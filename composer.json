@@ -13,12 +13,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SherifNabil\\Press\\": "src/"
+            "Sherif\\Press\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SherifNabil\\Press\\tests\\": "Tests/"
+            "Sherif\\Press\\Tests\\": "tests/"
         }
     },
     "require": {

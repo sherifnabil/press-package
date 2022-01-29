@@ -1,9 +1,9 @@
 <?php
 
-namespace SherifNabil\Press\Fields;
+namespace Sherif\Press\Fields;
 
 use Carbon\Carbon;
-use SherifNabil\Press\Fields\FieldContract;
+use Sherif\Press\Fields\FieldContract;
 
 class Date extends FieldContract
 {
