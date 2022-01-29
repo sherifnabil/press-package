@@ -3,6 +3,7 @@
 namespace Sherif\Press;
 
 use Illuminate\Support\ServiceProvider;
+use Sherif\Press\Console\ProcessCommand;
 
 class PressBaseServiceProvider extends ServiceProvider
 {
@@ -13,6 +14,9 @@ class PressBaseServiceProvider extends ServiceProvider
 
     public function register()
     {
+        $this->commands([
+            ProcessCommand::class
+        ]);
     }
 
     private function registerResources()
