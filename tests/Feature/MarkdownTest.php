@@ -3,6 +3,7 @@
 namespace Sherif\Press\Tests\Feature;
 
 use Sherif\Press\MarkdownParser;
+use Sherif\Press\Tests\TestCase;
 
 class MarkdownTest extends TestCase
 {

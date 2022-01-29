@@ -1,12 +1,18 @@
 <?php
 
-namespace Sherif\Press\Tests\Feature;
+namespace Sherif\Press\Tests;
 
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use Sherif\Press\PressBaseServiceProvider;
 
 class TestCase extends TestbenchTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->withFactories(__DIR__ . '/../database/factories');
+    }
+
     /**
     * Get package providers.
     *

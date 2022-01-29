@@ -3,6 +3,7 @@
 namespace Sherif\Press\Tests\Feature;
 
 use Carbon\Carbon;
+use Sherif\Press\Tests\TestCase;
 use Sherif\Press\PressFileParser;
 
 class PressFileParserTest extends TestCase
