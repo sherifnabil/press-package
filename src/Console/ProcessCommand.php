@@ -3,9 +3,10 @@
 namespace Sherif\Press\Console;
 
 use Sherif\Press\Post;
+use Sherif\Press\Press;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
-use Sherif\Press\Press;
+use Sherif\Press\Exceptions\FileDriverDirectoryNotFoundException;
 
 class ProcessCommand extends Command
 {
@@ -19,16 +20,20 @@ class ProcessCommand extends Command
             return $this->warn('Please publish the config file by running \'php artisan vendor:publish --tag=press-config\'');
         }
 
-        $posts = Press::driver()->fetchPosts();
+        try {
+            $posts = Press::driver()->fetchPosts();
 
-        foreach ($posts as $post) {
-            Post::create([
-                'identifier'    =>  Str::random(),
-                'slug'          =>  Str::slug($post['title']),
-                'title'         =>  $post['title'],
-                'body'          =>  $post['body'],
-                'extra'         =>  $post['extra'] ?? "{}",
-            ]);
+            foreach ($posts as $post) {
+                Post::create([
+                    'identifier'    =>  $post['identifier'],
+                    'slug'          =>  Str::slug($post['title']),
+                    'title'         =>  $post['title'],
+                    'body'          =>  $post['body'],
+                    'extra'         =>  $post['extra'] ?? "{}",
+                ]);
+            }
+        } catch (\Throwable $th) {
+            $this->error($th->getMessage());
         }
     }
 }
