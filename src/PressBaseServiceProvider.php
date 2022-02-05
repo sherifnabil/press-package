@@ -2,9 +2,11 @@
 
 namespace Sherif\Press;
 
+use Sherif\Press\Press;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Sherif\Press\Console\ProcessCommand;
+use Sherif\Press\Facades\Press as PressFacade;
 
 class PressBaseServiceProvider extends ServiceProvider
 {
@@ -32,6 +34,7 @@ class PressBaseServiceProvider extends ServiceProvider
             namespace: 'press'
         );
 
+        $this->registerFacade();
         $this->registerRoutes();
     }
 
@@ -54,8 +57,15 @@ class PressBaseServiceProvider extends ServiceProvider
     private function routeConfiguration()
     {
         return [
-            'prefix'    =>  Press::path(),
+            'prefix'    =>  PressFacade::path(),
             'namespace' =>  'Sherif\Press\Http\Controllers'
         ];
+    }
+
+    protected function registerFacade()
+    {
+        $this->app->singleton('Press', function ($app) {
+            return new Press();
+        });
     }
 }

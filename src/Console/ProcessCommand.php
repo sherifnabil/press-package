@@ -3,9 +3,9 @@
 namespace Sherif\Press\Console;
 
 use Sherif\Press\Post;
-use Sherif\Press\Press;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
+use Sherif\Press\Facades\Press;
 use Sherif\Press\Exceptions\FileDriverDirectoryNotFoundException;
 
 class ProcessCommand extends Command
