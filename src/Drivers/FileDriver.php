@@ -28,7 +28,6 @@ class FileDriver extends Driver
             throw new FileDriverDirectoryNotFoundException(
                 message: 'Directory at \'' . $this->config['path'] . '\' doesn\'t exist. Check the directory path in the config file.'
             );
-            file_put_contents(config('press.path') . '/test.md', file_get_contents(__DIR__ . '/../../blogs/sample-post.md'));
         }
     }
 }

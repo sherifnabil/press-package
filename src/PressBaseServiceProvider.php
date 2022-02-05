@@ -2,6 +2,7 @@
 
 namespace Sherif\Press;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Sherif\Press\Console\ProcessCommand;
 
@@ -26,6 +27,12 @@ class PressBaseServiceProvider extends ServiceProvider
     private function registerResources()
     {
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadViewsFrom(
+            path: __DIR__ . '/../resources/views',
+            namespace: 'press'
+        );
+
+        $this->registerRoutes();
     }
 
     protected function registerPublishing()
@@ -33,5 +40,22 @@ class PressBaseServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/press.php' =>  config_path('press.php')
         ], 'press-config');
+    }
+
+    protected function registerRoutes()
+    {
+        Route::group($this->routeConfiguration(), function () {
+            $this->loadRoutesFrom(
+                path: __DIR__ . '/../routes/web.php',
+            );
+        });
+    }
+
+    private function routeConfiguration()
+    {
+        return [
+            'prefix'    =>  Press::path(),
+            'namespace' =>  'Sherif\Press\Http\Controllers'
+        ];
     }
 }
