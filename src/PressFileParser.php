@@ -46,8 +46,7 @@ class PressFileParser
     {
         foreach ($this->data as $field => $value) {
             $class = $this->getField(Str::title($field));
-
-            if (!class_exists($class) && !method_exists($class, 'process')) {
+            if (is_null($class) || !class_exists($class) && !method_exists($class, 'process')) {
                 $class = 'Sherif\\Press\\Fields\\Extra';
             }
             $this->data = array_merge($this->data, $class::process($field, $value, $this->data));
