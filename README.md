@@ -8,7 +8,7 @@ An elegant markdown-powered blog for the Laravel framework.
 
 ### Installation
 
-``` composer require sherifnabil/press ```
+``` composer require sherif/press ```
 
 
 ### Migrate Database
