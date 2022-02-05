@@ -1,4 +1,4 @@
-#An example for the laravel framework package
+# An example for the laravel framework package
 
 ## This Package is For Learning Purpose
 
