@@ -45,3 +45,9 @@ description: This is my very first blog post with Press
 
 You are now a blogger!
 ```
+
+### for Custtomization
+
+`php artisan vendor:publish --tag=press-provider`
+
+By this you can overwrite the fields and your extra fields chech this file example [File](https://github.com/sherifnabil/press-package/blob/main/src/Fields/Body.php)
