@@ -51,3 +51,4 @@ You are now a blogger!
 `php artisan vendor:publish --tag=press-provider`
 
 By this you can overwrite the fields and your extra fields chech this file example [File](https://github.com/sherifnabil/press-package/blob/main/src/Fields/Body.php)
+``` note use your own namespace :)```
