@@ -3,8 +3,11 @@
 namespace Sherif\Press;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Mail\Markdown;
+use Sherif\Press\Facades\Press;
 use Illuminate\Support\Facades\File;
+use ReflectionClass;
 
 class PressFileParser
 {
@@ -42,7 +45,8 @@ class PressFileParser
     protected function processFields(): void
     {
         foreach ($this->data as $field => $value) {
-            $class = 'Sherif\\Press\\Fields\\' . ucfirst($field);
+            $class = $this->getField(Str::title($field));
+
             if (!class_exists($class) && !method_exists($class, 'process')) {
                 $class = 'Sherif\\Press\\Fields\\Extra';
             }
@@ -57,5 +61,15 @@ class PressFileParser
             $this->data[$fieldArray[1]] = $fieldArray[2];
         }
         $this->data['body'] = trim($this->rawData[2]);
+    }
+
+    private function getField($field)
+    {
+        foreach (Press::availableFields() as $availableField) {
+            $class = new ReflectionClass($availableField);
+            if ($class->getShortName() == $field) {
+                return $class->getName();
+            }
+        }
     }
 }

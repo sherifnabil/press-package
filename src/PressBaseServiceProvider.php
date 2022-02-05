@@ -3,6 +3,11 @@
 namespace Sherif\Press;
 
 use Sherif\Press\Press;
+use Sherif\Press\Fields\Body;
+use Sherif\Press\Fields\Date;
+use Sherif\Press\Fields\Extra;
+use Sherif\Press\Fields\Title;
+use Sherif\Press\Fields\Description;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Sherif\Press\Console\ProcessCommand;
@@ -36,6 +41,7 @@ class PressBaseServiceProvider extends ServiceProvider
 
         $this->registerFacade();
         $this->registerRoutes();
+        $this->registerFileds();
     }
 
     protected function registerPublishing()
@@ -67,5 +73,16 @@ class PressBaseServiceProvider extends ServiceProvider
         $this->app->singleton('Press', function ($app) {
             return new Press();
         });
+    }
+
+    private function registerFileds()
+    {
+        PressFacade::fields([
+            Body::class,
+            Date::class,
+            Description::class,
+            Extra::class,
+            Title::class,
+        ]);
     }
 }
